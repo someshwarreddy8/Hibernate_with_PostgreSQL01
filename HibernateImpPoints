@@ -1,0 +1,29 @@
+> while working with hibernate/JPA, Entity name refers to java class name & Table name refers to table name in the db.
+
+# JPQL VS NativeSQL:
+-------------------
+> while writing jpql queries, we should use Entity name, not Table name.
+> while working with JPQL, we don't need to specify which data base we are using & even if we change the under laying data base, we don't need to
+  modify JPQL queries we have written. They v'll only automatically get migrated as per under laying data base.i.e., it may be PostgreSQL or mySQL.
+
+> if we use native sql queries, when we migrate to a different data base, again we need to modify all the native sql queries according to under laying basebase.
+
+-----------------------------------------------------------------
+
+@Entity
+@Table(name="alien_table", uniqueConstraints = {@UniqueConstraint(name="test_Unique_Constaints", columnNames = {"unique_constaint", "unique_via_annotation"})})
+public class Alien { }
+
+-> in the above code, uniqueConstraints takes multiple values & creates unique key constrains at the start of the application.
+> if we would try to add another uniqueConstraints column, via columnNames after we start application once, it does'nt get added.
+> to add another uniqueConstraint via columnNames, first delete the uniqueConstraints from db & run the app once again. Then it gets added.
+
+------------------------------------------------------------------------------------------
+
+@Transient -> if we use @Transient with any column, that column/column data/row does'nt get added into db.
+
+-------------------------------------------------------------------------------------------
+
+
+
+
